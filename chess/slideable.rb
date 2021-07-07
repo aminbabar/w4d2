@@ -29,9 +29,12 @@ module Slideable
         moves = []
 
         while x < 8 && x >= 0 && y < 8 && y >=0
-            x += dx
-            y += dy
-            self.board[x][y].class == NullPiece ? moves << [x,y] : break
+            x += dx; y += dy
+            if self.board[x][y].class == NullPiece || @board[dx + x][dy + y].color != self.color
+                moves << [x,y]
+            else
+               break
+            end
         end
         moves
     end
