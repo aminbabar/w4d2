@@ -24,7 +24,7 @@ class Piece
     end
 
     def symbol
-        #graphical rep on print board ???
+        raise "set symbol"
     end
 
     private
