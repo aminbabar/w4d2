@@ -9,15 +9,15 @@ class Pawn < Piece
         attacks = side_attacks
         moves = []
         forward.each do |move|
-            dx, dy = move; x, y = pos
+            dy, dx = move; x, y = pos
             board_space = @board[dx+x][dy+y]
             board_space.class == NullPiece ?  moves << [dx+x, dy+y] : break
         end
 
         attacks.each do |attack|
-            dx, dy = attack; x, y = pos
+            dy, dx = attack; x, y = pos
             board_space = @board[dx+x][dy+y]
-            moves << [dx+x][dy+y] if board_space.color != self.color && !board_space.color.nil?
+            moves << [(dx+x),(dy+y)] if board_space.color != self.color && !board_space.color.nil?
         end
         moves
     end
@@ -31,12 +31,12 @@ class Pawn < Piece
 
     def forward_steps
         steps = []
-        color == white ? steps = [[0, 1], [0, 2]] : steps = [[0, -1], [0, -2]]
-        at_start_row ? steps : steps.take(1)
+        color == :white ? steps = [[0, 1], [0, 2]] : steps = [[0, -1], [0, -2]]
+        at_start_row? ? steps : steps.take(1)
     end
 
     def side_attacks
         steps = []
-        color == white ? steps = [[1, 1], [-1, 1]] : steps = [[1, -1], [-1, -1]]
+        color == :white ? steps = [[1, 1], [-1, 1]] : steps = [[1, -1], [-1, -1]]
     end
 end

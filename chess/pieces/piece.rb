@@ -11,8 +11,8 @@ class Piece
         @pos = pos
     end
 
-    def to_s
-        "Piece"
+    def inspect
+        self.symbol
     end
 
     def empty?

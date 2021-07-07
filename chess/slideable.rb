@@ -1,6 +1,6 @@
 module Slideable
-    HORIZONTAL_DIRS = [[1, 0], [-1, 0], [0, 1], [0, -1]]
-    DIAGONAL_DIRS = [[1, 1], [-1, -1], [1, -1], [-1,1]]
+    HORIZONTAL_DIRS = [[1, 0], [-1, 0], [0, 1], [0, -1]].freeze
+    DIAGONAL_DIRS = [[1, 1], [-1, -1], [1, -1], [-1,1]].freeze
 
    def horizontal_dirs
     moves = []
@@ -29,7 +29,7 @@ module Slideable
         moves = []
 
         while x < 8 && x >= 0 && y < 8 && y >=0
-            x += dx; y += dy
+            x += dy; y += dx
             if self.board[x][y].class == NullPiece || @board[dx + x][dy + y].color != self.color
                 moves << [x,y]
             else
