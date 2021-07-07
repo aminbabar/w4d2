@@ -16,7 +16,8 @@ class Piece
     end
 
     def empty?
-        @board[pos].class == NullPiece
+        row, col = pos
+        @board[row,col].class == NullPiece
     end
 
     def valid_moves

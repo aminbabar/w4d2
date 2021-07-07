@@ -4,13 +4,13 @@ module Slideable
 
    def horizontal_dirs
     moves = []
-    HORIZONTAL_DIRS.each {|dir|moves += grow_unblocked_moves_in_dir(dir)}
+    HORIZONTAL_DIRS.each {|dir|moves += grow_unblocked_moves_in_dir(dir[0], dir[1])}
     moves
    end 
 
    def diagonal_dirs
     moves = []
-    DIAGONAL_DIRS.each {|dir| moves += grow_unblocked_moves_in_dir(dir)}
+    DIAGONAL_DIRS.each {|dir| moves += grow_unblocked_moves_in_dir(dir[0], dir[1])}
     moves
    end
 
@@ -27,14 +27,15 @@ module Slideable
     def grow_unblocked_moves_in_dir(dx, dy)
         x, y = self.pos
         moves = []
-
-        while x < 8 && x >= 0 && y < 8 && y >=0
-            x += dy; y += dx
-            if self.board[x][y].class == NullPiece || @board[dx + x][dy + y].color != self.color
-                moves << [x,y]
-            else
+        x += dy; y += dx
+        while x <=7 && x >= 0 && y <= 7 && y >=0
+            if board[x][y].class == NullPiece
+                moves << [x, y]
+            elsif !empty? && board[x][y].color != self.color
+                moves << [x, y]
                break
             end
+            x += dy; y += dx
         end
         moves
     end
